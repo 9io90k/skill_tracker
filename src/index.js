@@ -1,7 +1,11 @@
-import { Tracker } from './tracker.service.js'
+import { SkillRepository } from './repositories/skill.repository.js'
+import { SkillService } from './services/skill.service.js';
+const repo = new SkillRepository('./data/data.json');
+await repo.init();
 
-const tracker = new Tracker(1);
+const skillService = new SkillService(1, repo);
 
-tracker.createSkill("developing");
-tracker.updateSkillTime("developing", 51250);
-console.log(tracker.getSkillsList());
+// Дальше работаем с сервисом:
+await skillService.createSkill('developing');
+await skillService.updateSkillTime('developing', 120);
+console.log(skillService.getSkillsList());

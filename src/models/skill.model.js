@@ -1,12 +1,16 @@
-export class Skill{
+export class SkillModel{
     #name;
-    #minutes = 0;
+    #minutes;
 
-    constructor(name){
+    constructor(name, minutes = 0){
         if(!name || typeof name !== 'string'){
             throw new Error('Skill name must be a non-empty string')
         }
+        if(minutes < 0) {
+            throw new Error('Minutes must be >0');
+        }
         this.#name = name;
+        this.#minutes = minutes;
     }
 
     addMinutes(min){
